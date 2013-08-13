@@ -23,5 +23,19 @@ You can nest how ever you like....
             'city' : "Palo Alto",
             'state': "California",
             'zipcode': "94305"
+        }}
+
+#ex.3
+
+{
+    'address':
+        {
+            'street_address': "23 Elm Drive",
+            'cities' : [{
+		summer:'Palo Alto',
+		winter:'New York'
+	     }],
+            'state': "California",
+            'zipcode': "94305"
         }
 } 
