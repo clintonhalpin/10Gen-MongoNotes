@@ -32,8 +32,8 @@ You can nest how ever you like....
         {
             'street_address': "23 Elm Drive",
             'cities' : [{
-		summer:'Palo Alto',
-		winter:'New York'
+		'summer':'Palo Alto',
+		'winter':'New York'
 	     }],
             'state': "California",
             'zipcode': "94305"
