@@ -1,18 +1,17 @@
 # Notes From Week 2
 
 ## BSON 
-
 http://www.bsonspec.org = Binary JSON that MongoDB uses
-
+```shell    
 	> NumberInt(1)
 	1
 	> NumberLong(1) + NumberLong(3)
 	4
 	> new Date()
 	ISODate("2013-08-24T14:26:02.209Z")
-
+```
 ## Inserting Objects
-
+```shell 
 	> doc = { ... }
 	> db.{ collection name }.insert( doc )
 	> db.{ collection name }.find()
@@ -21,10 +20,9 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 
 	-ex.
 	db.fruit.insert({name:"apple", color:"red", shape:"round"})
-
-
+```
 ## Querying
-
+```shell
 	db.{ collection name }.find()
 	db.{ collection name }.find( { arg1 }, { arg2 } )
 
@@ -33,7 +31,7 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 
 	-ex.
 	db.scores.find({ "type": "essay", "score": 50}, { "_id": false, "student": true })
-
+```
 ### Operators in Queries
 
 	db.{ collection name }.find( {  key : { $gt: value, $lte:value} } ) 
@@ -47,17 +45,4 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 
 	-ex. 
 	db.users.find( { name: { $regex : "q"}, email : { $exists:true } } )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
