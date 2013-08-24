@@ -33,7 +33,7 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 	db.scores.find({ "type": "essay", "score": 50}, { "_id": false, "student": true })
 ```
 ### Operators in Queries
-
+```shell
 	db.{ collection name }.find( {  key : { $gt: value, $lte:value} } ) 
 
 	This works with Numbers and Strings
