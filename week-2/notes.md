@@ -110,9 +110,9 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 		var projection = { 'title': 1, "_id" : 0 };
 
 		db.collection('reddit').find(query, projection).each( function(err, doc) {
-			if (err) throw err;
+			if(err) throw err;
 
-			if (doc == null) {
+			if(doc == null) {
 				return db.close();
 			}
 
@@ -130,9 +130,9 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 
 
 		db.colletion('reddit').find(query,projection).each(function(err,doc) {
-			if (err) throw err;
+			if(err) throw err;
 
-			if ( doc == null ) {
+			if (doc == null) {
 				return db.close();
 			}
 
@@ -148,7 +148,7 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 		var doc = { 'student' : 'Calvin', 'age' : 6 };
 
 		db.collection('students').insert(doc, function(err, inserted) {
-			if (err) throw err;
+			if(err) throw err;
 
 			console.dir("Successfully Inserted:" + JSON.stringify(inserted));
 
@@ -157,7 +157,7 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 	...
 
 	...
-		// Insert Multiple Docs
+		// You can also insert Multiple Documents with array Syntax
 
 		var docs = [
 			 	{ '_id' : 'George', 'age' : 6 },
@@ -175,7 +175,7 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 		var query = { 'assignment' : 'hw1' };
 
 		db.collection('grades').findOne(query, function(err,doc) {
-			if (err) throw err;
+			if(err) throw err;
 			if (!doc) {
 				console.log('No document for assignment' + query.assignment + 'found!');
 				return db.close();
@@ -187,7 +187,7 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 			doc[ 'date_returned' ] = new Date();
 
 			db.collection('grades').update(query, doc, function(err,updated) {
-				if (err) throw err;
+				if(err) throw err;
 
 				console.dir("Successfully updated " + updated + "document!");
 
@@ -199,7 +199,45 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 
 ```
 * In Place
+``` javascript
+	...
+	var query = { 'assignment' : 'hw1' };
+	var operator = { '$set' : { 'date_returned' : new Date() } };
+
+	db.collection('grades').update(query, operator, function(err,updated) {
+		if(err) throw err;
+
+		console.dir("Successfully updated " + updated + "document!");
+
+		return db.close(); 
+	
+	});
+	...
+
+```
+
 * Multi
+``` javascript
+	...
+	var query = {};
+	var operator = { '$unset' : { 'date_returned': '' } };
+	var options = { 'multi' : true };
+
+	db.collection('grades').update(query, operator, options, function(err, updated) {
+		if(err) throw err;
+
+		console.dir("Successfully updated " + updated + "documents!");
+
+		return db.close();
+	});
+
+
+```
+
+
+
+
+
 
 
 
