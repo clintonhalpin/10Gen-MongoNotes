@@ -166,7 +166,8 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 
 ```
 ### Update
-* Replacement
+Replacement
+
 ``` javascript
 	...
 		var query = { 'assignment' : 'hw1' };
@@ -195,7 +196,8 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 	...
 
 ```
-* In Place
+In Place
+
 ``` javascript
 	...
 	var query = { 'assignment' : 'hw1' };
@@ -212,7 +214,8 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 	...
 
 ```
-* Multi
+Multi
+
 ``` javascript
 	...
 	var query = {};
@@ -226,8 +229,7 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 
 		return db.close();
 	});
-
-
+	...
 ```
 
 
