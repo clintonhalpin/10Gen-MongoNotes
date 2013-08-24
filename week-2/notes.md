@@ -140,7 +140,6 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 		});
 	...
 ```
-
 ### Insert
 ``` javascript
 
@@ -167,9 +166,7 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 
 ```
 ### Update
-
 * Replacement
-
 ``` javascript
 	...
 		var query = { 'assignment' : 'hw1' };
@@ -215,7 +212,6 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 	...
 
 ```
-
 * Multi
 ``` javascript
 	...
