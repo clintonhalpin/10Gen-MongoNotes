@@ -81,6 +81,126 @@ http://www.bsonspec.org = Binary JSON that MongoDB uses
 	db.runCommand({ getLastError: 1 });
 	//Way to check if write operation suceeded or failed.
 ```
+## Node JS Driver
+``` javascript
+	
+	-ex.
+	var MongoClient = require('mongodb').MongoClient;
+	MongoClient.connect('mongodb://localhost:27017/course', function(err, db) 
+	{
+	     if(err) throw err;
+
+	     var query = { 'grade' : 100};
+
+	     function callback(err, doc) {
+	          if(err) throw err;
+
+	          console.dir(doc);
+
+	          db.close();
+	     } 
+		db.collection('grades').findOne(query,callback);
+	});	
+```
+### Projections
+``` javascript
+	-ex.
+	...
+		var query = { 'title' : { '$regex' : 'NSA' } };
+		var projection = { 'title': 1, "_id" : 0 };
+
+		db.collection('reddit').find(query, projection).each( function(err, doc) {
+			if (err) throw err;
+
+			if (doc == null) {
+				return db.close();
+			}
+
+			console.dir(doc.title);
+
+		});
+	...
+```
+### Dot Notation w/ Node JS Driver
+``` javascript
+	-ex.
+	...
+		var query = { 'media.oembed.type' : 'video' };
+		var projection = { 'media.oembed.url': 1, "_id" : 0 };
+
+
+		db.colletion('reddit').find(query,projection).each(function(err,doc) {
+			if (err) throw err;
+
+			if ( doc == null ) {
+				return db.close();
+			}
+
+			console.dir(doc)
+		});
+	...
+```
+
+### Insert
+``` javascript
+
+	...
+		var doc = { 'student' : 'Calvin', 'age' : 6 };
+
+		db.collection('students').insert(doc, function(err, inserted) {
+			if (err) throw err;
+
+			console.dir("Successfully Inserted:" + JSON.stringify(inserted));
+
+			return db.close();
+		});
+	...
+
+	...
+		// Insert Multiple Docs
+
+		var docs = [
+			 	{ '_id' : 'George', 'age' : 6 },
+            	{ '_id' : 'george', 'age' : 7 } 
+             ];
+	...
+
+```
+### Update
+
+* Replacement
+
+``` javascript
+	...
+		var query = { 'assignment' : 'hw1' };
+
+		db.collection('grades').findOne(query, function(err,doc) {
+			if (err) throw err;
+			if (!doc) {
+				console.log('No document for assignment' + query.assignment + 'found!');
+				return db.close();
+			}
+
+			// Ensure's our query is only replacing ID
+
+			query[ '_id' ] = doc[ '_id' ];
+			doc[ 'date_returned' ] = new Date();
+
+			db.collection('grades').update(query, doc, function(err,updated) {
+				if (err) throw err;
+
+				console.dir("Successfully updated " + updated + "document!");
+
+				return db.close();
+
+			});
+		});
+	...
+
+```
+* In Place
+* Multi
+
 
 
 
